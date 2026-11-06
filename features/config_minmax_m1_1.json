@@ -1,0 +1,8 @@
+{
+    "impute_strategy": "median",
+    "scaler_type": "minmax",
+    "feature_range": [
+        -1,
+        1
+    ]
+}

@@ -1,0 +1,4 @@
+{
+    "impute_strategy": "median",
+    "scaler_type": "standard"
+}

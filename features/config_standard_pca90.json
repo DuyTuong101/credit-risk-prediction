@@ -1,0 +1,5 @@
+{
+    "impute_strategy": "median",
+    "scaler_type": "standard",
+    "pca_variance": 0.9
+}

@@ -1,0 +1,17 @@
+
+# Data Manipulation & Analysis
+numpy
+pandas
+
+# Machine Learning & Preprocessing
+scikit-learn
+joblib
+
+# Data Visualization
+matplotlib
+seaborn
+
+# Jupyter Environment
+jupyter
+notebook
+ipykernel

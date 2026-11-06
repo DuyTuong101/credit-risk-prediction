@@ -1,0 +1,9 @@
+{
+    "impute_strategy": "median",
+    "scaler_type": "minmax",
+    "feature_range": [
+        0,
+        1
+    ],
+    "pca_variance": 0.95
+}

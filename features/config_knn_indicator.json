@@ -1,0 +1,5 @@
+{
+    "impute_strategy": "knn",
+    "scaler_type": "standard",
+    "add_missing_indicator": true
+}

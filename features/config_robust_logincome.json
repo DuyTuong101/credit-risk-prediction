@@ -1,0 +1,7 @@
+{
+    "impute_strategy": "median",
+    "scaler_type": "robust",
+    "log_cols": [
+        "person_income"
+    ]
+}

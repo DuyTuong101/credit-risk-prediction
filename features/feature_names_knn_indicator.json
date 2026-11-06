@@ -1,0 +1,21 @@
+[
+    "num__person_age",
+    "num__person_income",
+    "num__person_emp_length",
+    "num__loan_amnt",
+    "num__loan_int_rate",
+    "num__loan_percent_income",
+    "num__cb_person_cred_hist_length",
+    "num__missingindicator_person_emp_length",
+    "num__missingindicator_loan_int_rate",
+    "ord__loan_grade",
+    "nom__person_home_ownership_OTHER",
+    "nom__person_home_ownership_OWN",
+    "nom__person_home_ownership_RENT",
+    "nom__loan_intent_EDUCATION",
+    "nom__loan_intent_HOMEIMPROVEMENT",
+    "nom__loan_intent_MEDICAL",
+    "nom__loan_intent_PERSONAL",
+    "nom__loan_intent_VENTURE",
+    "nom__cb_person_default_on_file_Y"
+]
