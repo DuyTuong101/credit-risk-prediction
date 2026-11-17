@@ -38,9 +38,10 @@ credit-risk-prediction/
 │   └── feature_names_baseline.json
 │
 ├── models/
-│
+│   └── best_model.joblib
 ├── modules/
-│   └── data_processing.py
+│   ├── data_processing.py
+│   └── model_training.py
 │
 ├── notebooks/
 │   ├── 01_EDA.ipynb
@@ -49,7 +50,11 @@ credit-risk-prediction/
 │   └── 04_Model_Evaluation.ipynb
 │
 ├── reports/
-│   └── figures/
+│   ├── figures/
+│   ├── model_comparison.csv
+│   ├── test_metrics.json
+│   ├── classification_report.json
+│   └── confusion_matrix.csv
 │
 ├── .gitignore
 ├── README.md
@@ -134,7 +139,28 @@ pip install -r requirements.txt
 jupyter notebook
 ```
 
-Open the notebooks in the `notebooks/` directory to explore the dataset, preprocess the data, train models, and evaluate their performance.
+Open the notebooks in the `notebooks/` directory to explore and preprocess the data. Train and compare Logistic Regression, SVM, and Random Forest from the repository root with:
+
+```bash
+python -m modules.model_training
+```
+
+The script loads `data/processed/credit_risk_cleaned.csv`, creates a stratified train/test split, and fits imputation, scaling, encoding, and optional PCA within each model pipeline. Each candidate is compared using stratified cross-validation on the training split; the highest mean-F1 model is refitted on all training data and evaluated once on the held-out test split. The fitted preprocessing-and-model pipeline is saved as `models/best_model.joblib`; cross-validation scores and held-out metrics/reports are saved under `reports/`.
+
+Pipeline choices and estimator hyperparameters can be set on the command line:
+
+```bash
+# Standard scaling and PCA retaining 95% of variance
+python -m modules.model_training --scaler standard --pca-variance 0.95
+
+# MinMax scaling into [-1, 1], PCA retaining 90%, and selected models
+python -m modules.model_training --scaler minmax --feature-range -1 1 --pca-variance 0.90 --models logistic_regression svm random_forest
+
+# Tune model parameters
+python -m modules.model_training --logistic-c 0.5 --svm-c 2 --svm-kernel linear --rf-n-estimators 300 --rf-max-depth 15
+```
+
+Omit `--pca-variance` to disable dimensionality reduction. Available options, including imputation, split size, fold count, and output paths, are listed by `python -m modules.model_training --help`. The same settings are available as keyword arguments to `train_and_evaluate` in `modules/model_training.py`.
 
 ## 9. Team Project
 
@@ -144,6 +170,6 @@ The team collaborates on data exploration, preprocessing, model development, eva
 
 ## 10. Project Status
 
-**Current stage:** Data preprocessing and project organization.
+**Current stage:** Data preprocessing and traditional model training.
 
-Further work includes exploratory data analysis, model training, performance evaluation, and comparison of classification algorithms.
+Further work includes reviewing model results and selecting a final model based on the project's credit-risk objectives.
