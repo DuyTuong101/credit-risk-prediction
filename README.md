@@ -1,6 +1,27 @@
 # Credit Risk Prediction Using Machine Learning
 
-A machine learning project that predicts whether a loan applicant is likely to default based on applicant, loan, and credit-history information. The project was developed for the Machine Learning course at Ho Chi Minh City University of Technology (HCMUT).
+A machine learning project that predicts whether a loan applicant is likely to default based on applicant, loan, and credit-history information. The project was developed for the Machine Learning course at Ho Chi Minh City University of Technology (HCMUT), Vietnam National University Ho Chi Minh City (VNU-HCM).
+
+## Course Information
+
+| Item | Details |
+|---|---|
+| Course | Machine Learning |
+| Course code | CO3117 |
+| Semester | Semester I |
+| Academic year | 2026–2027 |
+| University | Ho Chi Minh City University of Technology (HCMUT), VNU-HCM |
+| Advisor / Instructor | ThD Truong Vinh Lan |
+
+## Assignment Objectives
+
+The project aims to apply a traditional machine learning pipeline to a real-world tabular dataset. The main objectives are to:
+
+- Perform exploratory data analysis (EDA) to understand the dataset, feature distributions, missing values, outliers, and target-class distribution.
+- Build a reproducible data preprocessing and feature-generation workflow.
+- Train and compare multiple traditional classification algorithms.
+- Experiment with preprocessing configurations and model hyperparameters.
+- Evaluate model performance using appropriate classification metrics and analyze the results.
 
 ## 1. Project Overview
 
@@ -30,7 +51,9 @@ The project uses `credit_risk_dataset.csv`. The dataset contains applicant and l
 | `cb_person_cred_hist_length` | Length of credit history |
 | `loan_status` | Target variable: default status |
 
-The raw dataset is stored at `data/raw/credit_risk_dataset.csv`. The cleaned dataset is stored at `data/processed/credit_risk_cleaned.csv`.
+The dataset is publicly available on Kaggle: [Credit Risk Dataset – laotse](https://www.kaggle.com/datasets/laotse/credit-risk-dataset). The raw dataset used by the project is stored at `data/raw/credit_risk_dataset.csv`. The cleaned dataset is stored at `data/processed/credit_risk_cleaned.csv`.
+
+For the Google Colab workflow, use the linked [master notebook](https://colab.research.google.com/github/DuyTuong101/credit-risk-prediction/blob/main/notebooks/master_notebook.ipynb). Follow its data preparation cells to make the dataset available in the Colab runtime.
 
 ## 3. Repository Structure
 
@@ -67,6 +90,7 @@ credit-risk-prediction/
 │   ├── figures/
 │   ├── experiments/
 │   ├── hyperparameters/
+│   ├── Credit_Risk_Prediction_HCMUT_Report.pdf  # Add the final PDF report here
 │   ├── classification_report.json
 │   ├── confusion_matrix.csv
 │   ├── model_comparison.csv
@@ -146,6 +170,15 @@ The test set contains 6,482 samples. These values are taken from `reports/test_m
 - Python 3.10 or later
 - pip
 - Jupyter Notebook or JupyterLab
+- Python packages listed in `requirements.txt`
+
+### Run on Google Colab
+
+The submitted notebook is available here:
+
+[Open Master Notebook in Google Colab](https://colab.research.google.com/github/DuyTuong101/credit-risk-prediction/blob/main/notebooks/master_notebook.ipynb)
+
+Open the notebook and select **Runtime → Run all** to execute the integrated workflow. The notebook is stored in the GitHub repository, so it can be opened directly without manually uploading the notebook file.
 
 ### Clone the repository
 
@@ -185,11 +218,11 @@ Run the master notebook for the integrated end-to-end workflow rather than treat
 
 This is a group project for the Machine Learning course at Ho Chi Minh City University of Technology (HCMUT).
 
-| Member | Student ID | Main Responsibilities |
-|---|---:|---|
-| Do Viet Duy Tuong | 2353302 | Project integration, pipeline and feature extraction, experiments and analysis, report preparation, and repository organization |
-| Ngo Gia Bao | 2352094 | Exploratory data analysis and data processing |
-| Tran Doan Binh An | 2352017 | Model training and evaluation |
+| Member | Student ID | Email | Main Responsibilities |
+|---|---:|---|---|
+| Do Viet Duy Tuong | 2353302 | tuong.do10012005@hcmut.edu.vn | Project integration, pipeline and feature extraction, experiments and analysis, report preparation, and repository organization |
+| Ngo Gia Bao | 2352094 | bao.ngogiabao1608@hcmut.edu.vn | Exploratory data analysis and data processing |
+| Tran Doan Binh An | 2352017 | **To be added** | Model training and evaluation |
 
 **Advisor:** Truong Vinh Lan
 
@@ -197,7 +230,17 @@ This is a group project for the Machine Learning course at Ho Chi Minh City Univ
 
 The project report is titled **Credit Risk Prediction Using Machine Learning**. It documents the project motivation, dataset analysis, methodology, experimental setup, results, and conclusion.
 
-## 9. Notes
+After adding the PDF to the `reports/` directory, it can be accessed directly from the repository:
+
+[Download the Project Report (PDF)](reports/Credit_Risk_Prediction_HCMUT_Report.pdf)
+
+## 9. Links
+
+- **GitHub Repository:** [DuyTuong101/credit-risk-prediction](https://github.com/DuyTuong101/credit-risk-prediction)
+- **Google Colab Notebook:** [Open master notebook](https://colab.research.google.com/github/DuyTuong101/credit-risk-prediction/blob/main/notebooks/master_notebook.ipynb)
+- **Dataset:** [Credit Risk Dataset on Kaggle](https://www.kaggle.com/datasets/laotse/credit-risk-dataset)
+
+## 10. Notes
 
 - `models/best_model.joblib` contains the saved final model pipeline.
 - The `reports/` directory contains final metrics, classification results, confusion matrix, and experiment summaries.
