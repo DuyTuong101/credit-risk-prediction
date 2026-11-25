@@ -1,131 +1,158 @@
-# Credit Risk Prediction
+# Credit Risk Prediction Using Machine Learning
+
+A machine learning project that predicts whether a loan applicant is likely to default based on applicant, loan, and credit-history information. The project was developed for the Machine Learning course at Ho Chi Minh City University of Technology (HCMUT).
 
 ## 1. Project Overview
 
-This project focuses on **Credit Risk Classification** using Machine Learning techniques.
+The goal is to build and evaluate classification models for predicting loan default. The target variable is `loan_status`:
 
-The main objective is to predict whether a loan applicant is likely to default based on their personal, financial, and credit-related information.
+- `0` — Non-default
+- `1` — Default
 
-The project uses the `credit_risk_dataset.csv` dataset, with `loan_status` as the target variable.
+The workflow covers exploratory data analysis (EDA), data cleaning, preprocessing, feature generation, model training, experiments, and final evaluation.
 
-- `loan_status = 0`: Non-default
-- `loan_status = 1`: Default
+## 2. Dataset
 
-## 2. Project Objectives
-
-- Explore and understand the credit risk dataset.
-- Perform data cleaning and preprocessing.
-- Handle missing values and invalid data.
-- Encode categorical features and scale numerical features.
-- Train and compare different Machine Learning classification models.
-- Evaluate model performance using appropriate classification metrics.
-
-## 3. Repository Structure
-
-```text
-credit-risk-prediction/
-│
-├── data/
-│   ├── raw/
-│   │   └── credit_risk_dataset.csv
-│   └── processed/
-│
-├── features/
-│   ├── X_train_baseline.npy
-│   ├── X_test_baseline.npy
-│   ├── y_train_baseline.npy
-│   ├── y_test_baseline.npy
-│   └── feature_names_baseline.json
-│
-├── models/
-│   └── best_model.joblib
-├── modules/
-│   ├── data_processing.py
-│   └── model_training.py
-│
-├── notebooks/
-│   ├── 01_EDA.ipynb
-│   ├── 02_Data_Preprocessing.ipynb
-│   ├── 03_Model_Training.ipynb
-│   └── 04_Model_Evaluation.ipynb
-│
-├── reports/
-│   ├── figures/
-│   ├── model_comparison.csv
-│   ├── test_metrics.json
-│   ├── classification_report.json
-│   └── confusion_matrix.csv
-│
-├── .gitignore
-├── README.md
-└── requirements.txt
-```
-
-## 4. Dataset Description
-
-The dataset contains information about loan applicants, including:
+The project uses `credit_risk_dataset.csv`. The dataset contains applicant and loan-related attributes, including:
 
 | Feature | Description |
 |---|---|
-| `person_age` | Age of the applicant |
-| `person_income` | Annual income |
+| `person_age` | Applicant's age |
+| `person_income` | Applicant's annual income |
 | `person_home_ownership` | Home ownership status |
 | `person_emp_length` | Employment length |
 | `loan_intent` | Purpose of the loan |
 | `loan_grade` | Loan grade |
 | `loan_amnt` | Loan amount |
 | `loan_int_rate` | Loan interest rate |
-| `loan_percent_income` | Loan amount as a percentage of income |
+| `loan_percent_income` | Loan amount as a proportion of income |
 | `cb_person_default_on_file` | Historical default indicator |
-| `cb_person_cred_hist_length` | Credit history length |
-| `loan_status` | Target variable |
+| `cb_person_cred_hist_length` | Length of credit history |
+| `loan_status` | Target variable: default status |
 
-## 5. Data Processing Pipeline
+The raw dataset is stored at `data/raw/credit_risk_dataset.csv`. The cleaned dataset is stored at `data/processed/credit_risk_cleaned.csv`.
 
-The project follows these main preprocessing steps:
+## 3. Repository Structure
 
-1. Load the original dataset.
-2. Remove duplicate records.
-3. Identify and handle invalid values.
-4. Split the dataset into training and testing sets.
-5. Handle missing values using imputation techniques.
-6. Encode categorical variables.
-7. Scale numerical features.
-8. Save the processed features for model training.
+```text
+credit-risk-prediction/
+├── data/
+│   ├── raw/
+│   │   └── credit_risk_dataset.csv
+│   └── processed/
+│       └── credit_risk_cleaned.csv
+├── features/
+│   ├── config_*.json
+│   ├── feature_manifest.json
+│   ├── feature_names_*.json
+│   ├── preprocessor_*.joblib
+│   ├── train_indices.npy
+│   ├── test_indices.npy
+│   ├── X_train_*.npy
+│   ├── X_test_*.npy
+│   ├── y_train.npy
+│   └── y_test.npy
+├── models/
+│   ├── best_model.joblib
+│   ├── experiments/
+│   └── hyperparameters/
+├── modules/
+│   ├── data_processing.py
+│   └── model_training.py
+├── notebooks/
+│   ├── 01_EDA.ipynb
+│   ├── 02_Data_Preprocessing.ipynb
+│   └── master_notebook.ipynb
+├── reports/
+│   ├── figures/
+│   ├── experiments/
+│   ├── hyperparameters/
+│   ├── classification_report.json
+│   ├── confusion_matrix.csv
+│   ├── model_comparison.csv
+│   ├── preprocessing_experiments.csv
+│   ├── hyperparameter_experiments.csv
+│   └── test_metrics.json
+├── .gitignore
+├── README.md
+└── requirements.txt
+```
 
-**Data Leakage Prevention:** Statistical preprocessing operations are fitted only on the training set through Scikit-learn pipelines. The test set is kept separate for final evaluation.
+## 4. Methodology
 
-## 6. Machine Learning Models
+### 4.1 Exploratory Data Analysis
 
-The project will investigate and compare classification algorithms, including:
+EDA is used to understand the dataset before modeling. It includes:
+
+- Dataset structure, descriptive statistics, missing values, and duplicate records.
+- Distribution of the target variable (`loan_status`).
+- Detection and inspection of invalid values and outliers.
+- Analysis of categorical features by target class.
+- Correlation analysis of numerical features.
+
+EDA figures are saved in `reports/figures/`.
+
+### 4.2 Data Preprocessing and Feature Generation
+
+The preprocessing workflow includes:
+
+1. Loading and cleaning the raw dataset.
+2. Checking duplicate records and invalid values.
+3. Splitting the data into training and test sets.
+4. Imputing missing numerical and categorical values.
+5. Encoding categorical variables.
+6. Scaling numerical features where appropriate.
+7. Generating and saving feature sets and preprocessing configurations.
+
+**Data leakage prevention:** the train/test split is performed before fitting preprocessing transformations. Imputers, encoders, scalers, and other learned transformations are fitted using training data only, then applied to the test data.
+
+The `features/` directory stores generated feature arrays, feature names, split indices, preprocessing configurations, and the feature manifest.
+
+### 4.3 Models
+
+The project investigates the following classification algorithms:
 
 - Logistic Regression
-- Decision Tree
+- Linear Support Vector Machine (Linear SVM)
 - Random Forest
-- Gradient Boosting
 
-The final model selection will be based on experimental results.
+### 4.4 Experiments
 
-## 7. Model Evaluation
+Experiments examine preprocessing choices and model hyperparameters. The repository stores experiment-level model artifacts and evaluation outputs under:
 
-The models will be evaluated using the following metrics:
+- `models/experiments/` and `reports/experiments/`
+- `models/hyperparameters/` and `reports/hyperparameters/`
 
-- Accuracy
-- Precision
-- Recall
-- F1-score
-- ROC-AUC
-- Confusion Matrix
+The corresponding summary tables are `reports/preprocessing_experiments.csv` and `reports/hyperparameter_experiments.csv`.
 
-Special attention will be paid to Recall and F1-score because the dataset contains an imbalanced target distribution.
+## 5. Final Model Results
 
-## 8. Installation and Setup
+The saved final evaluation identifies **Random Forest** as the selected model. Its performance on the held-out test set is:
+
+| Metric | Score |
+|---|---:|
+| Accuracy | 93.44% |
+| Precision | 95.26% |
+| Recall | 73.70% |
+| F1-score | 83.10% |
+| ROC-AUC | 93.55% |
+
+The test set contains 6,482 samples. These values are taken from `reports/test_metrics.json`. Additional details are available in `reports/classification_report.json` and `reports/confusion_matrix.csv`.
+
+## 6. Getting Started
 
 ### Requirements
 
 - Python 3.10 or later
 - pip
-- Jupyter Notebook
+- Jupyter Notebook or JupyterLab
+
+### Clone the repository
+
+```bash
+git clone https://github.com/DuyTuong101/credit-risk-prediction.git
+cd credit-risk-prediction
+```
 
 ### Install dependencies
 
@@ -133,43 +160,46 @@ Special attention will be paid to Recall and F1-score because the dataset contai
 pip install -r requirements.txt
 ```
 
-### Run Jupyter Notebook
+### Run the complete workflow
+
+The recommended entry point is the master notebook, which brings together EDA, preprocessing, model training, experiments, evaluation, and output verification:
 
 ```bash
-jupyter notebook
+jupyter notebook notebooks/master_notebook.ipynb
 ```
 
-Open the notebooks in the `notebooks/` directory to explore and preprocess the data. Train and compare Logistic Regression, SVM, and Random Forest from the repository root with:
+Open `master_notebook.ipynb` and run the cells in order (`Kernel` / `Run All`, or the equivalent command in your notebook interface). The notebook is also organized for execution in Google Colab.
+
+### Run individual analysis notebooks
+
+The EDA and preprocessing stages can also be explored separately:
 
 ```bash
-python -m modules.model_training
+jupyter notebook notebooks/01_EDA.ipynb
+jupyter notebook notebooks/02_Data_Preprocessing.ipynb
 ```
 
-The script loads `data/processed/credit_risk_cleaned.csv`, creates a stratified train/test split, and fits imputation, scaling, encoding, and optional PCA within each model pipeline. Each candidate is compared using stratified cross-validation on the training split; the highest mean-F1 model is refitted on all training data and evaluated once on the held-out test split. The fitted preprocessing-and-model pipeline is saved as `models/best_model.joblib`; cross-validation scores and held-out metrics/reports are saved under `reports/`.
+Run the master notebook for the integrated end-to-end workflow rather than treating these separate notebooks as independent final pipelines.
 
-Pipeline choices and estimator hyperparameters can be set on the command line:
+## 7. Team
 
-```bash
-# Standard scaling and PCA retaining 95% of variance
-python -m modules.model_training --scaler standard --pca-variance 0.95
+This is a group project for the Machine Learning course at Ho Chi Minh City University of Technology (HCMUT).
 
-# MinMax scaling into [-1, 1], PCA retaining 90%, and selected models
-python -m modules.model_training --scaler minmax --feature-range -1 1 --pca-variance 0.90 --models logistic_regression svm random_forest
+| Member | Student ID | Main Responsibilities |
+|---|---:|---|
+| Do Viet Duy Tuong | 2353302 | Project integration, pipeline and feature extraction, experiments and analysis, report preparation, and repository organization |
+| Ngo Gia Bao | 2352094 | Exploratory data analysis and data processing |
+| Tran Doan Binh An | 2352017 | Model training and evaluation |
 
-# Tune model parameters
-python -m modules.model_training --logistic-c 0.5 --svm-c 2 --svm-kernel linear --rf-n-estimators 300 --rf-max-depth 15
-```
+**Advisor:** Truong Vinh Lan
 
-Omit `--pca-variance` to disable dimensionality reduction. Available options, including imputation, split size, fold count, and output paths, are listed by `python -m modules.model_training --help`. The same settings are available as keyword arguments to `train_and_evaluate` in `modules/model_training.py`.
+## 8. Project Report
 
-## 9. Team Project
+The project report is titled **Credit Risk Prediction Using Machine Learning**. It documents the project motivation, dataset analysis, methodology, experimental setup, results, and conclusion.
 
-This is a group project developed as part of the Machine Learning course at Ho Chi Minh City University of Technology (HCMUT).
+## 9. Notes
 
-The team collaborates on data exploration, preprocessing, model development, evaluation, and result analysis.
-
-## 10. Project Status
-
-**Current stage:** Data preprocessing and traditional model training.
-
-Further work includes reviewing model results and selecting a final model based on the project's credit-risk objectives.
+- `models/best_model.joblib` contains the saved final model pipeline.
+- The `reports/` directory contains final metrics, classification results, confusion matrix, and experiment summaries.
+- The `features/` directory contains generated intermediate artifacts used by the modeling workflow.
+- Model and preprocessing results should be interpreted together with the evaluation reports, especially because the target classes are imbalanced.
