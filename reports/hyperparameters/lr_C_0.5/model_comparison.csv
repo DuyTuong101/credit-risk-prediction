@@ -1,0 +1,2 @@
+model,cv_f1_mean,cv_f1_std,cv_roc_auc_mean
+logistic_regression,0.6434644283221297,0.005598862020477662,0.8702983864092714

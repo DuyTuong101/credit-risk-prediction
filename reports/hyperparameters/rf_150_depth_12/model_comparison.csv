@@ -1,0 +1,2 @@
+model,cv_f1_mean,cv_f1_std,cv_roc_auc_mean
+random_forest,0.8022528606526732,0.005909964273102455,0.9282320141895967

@@ -1,5 +1,5 @@
 {
-    "impute_strategy": "knn",
+    "impute_strategy": "median",
     "scaler_type": "standard",
     "add_missing_indicator": true
 }

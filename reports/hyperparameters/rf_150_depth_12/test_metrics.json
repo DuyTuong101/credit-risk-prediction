@@ -1,0 +1,43 @@
+{
+  "selected_model": "random_forest",
+  "selection_metric": "mean cross-validation F1",
+  "scaler": "standard",
+  "feature_range": null,
+  "pca_variance": null,
+  "numeric_imputation": "median",
+  "categorical_imputation": "most_frequent",
+  "models_compared": [
+    "random_forest"
+  ],
+  "model_parameters": {
+    "random_forest": {
+      "bootstrap": true,
+      "ccp_alpha": 0.0,
+      "class_weight": "balanced_subsample",
+      "criterion": "gini",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "max_leaf_nodes": null,
+      "max_samples": null,
+      "min_impurity_decrease": 0.0,
+      "min_samples_leaf": 2,
+      "min_samples_split": 2,
+      "min_weight_fraction_leaf": 0.0,
+      "monotonic_cst": null,
+      "n_estimators": 150,
+      "n_jobs": -1,
+      "oob_score": false,
+      "random_state": 42,
+      "verbose": 0,
+      "warm_start": false
+    }
+  },
+  "accuracy": 0.9220919469299599,
+  "precision": 0.8826487845766974,
+  "recall": 0.7425952045133991,
+  "f1": 0.8065875143623132,
+  "roc_auc": 0.9331734336459468,
+  "train_rows": 25927,
+  "test_rows": 6482,
+  "cv_folds": 3
+}

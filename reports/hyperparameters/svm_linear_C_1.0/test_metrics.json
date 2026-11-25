@@ -1,0 +1,39 @@
+{
+  "selected_model": "svm",
+  "selection_metric": "mean cross-validation F1",
+  "scaler": "standard",
+  "feature_range": null,
+  "pca_variance": null,
+  "numeric_imputation": "median",
+  "categorical_imputation": "most_frequent",
+  "models_compared": [
+    "svm"
+  ],
+  "model_parameters": {
+    "svm": {
+      "C": 1.0,
+      "break_ties": false,
+      "cache_size": 200,
+      "class_weight": "balanced",
+      "coef0": 0.0,
+      "decision_function_shape": "ovr",
+      "degree": 3,
+      "gamma": "scale",
+      "kernel": "linear",
+      "max_iter": -1,
+      "probability": false,
+      "random_state": 42,
+      "shrinking": true,
+      "tol": 0.001,
+      "verbose": false
+    }
+  },
+  "accuracy": 0.8193458809009565,
+  "precision": 0.5642225689027561,
+  "recall": 0.7651622002820875,
+  "f1": 0.6495061358874589,
+  "roc_auc": 0.8681140916717358,
+  "train_rows": 25927,
+  "test_rows": 6482,
+  "cv_folds": 3
+}

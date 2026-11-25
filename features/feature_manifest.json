@@ -1,0 +1,349 @@
+{
+  "dataset": "credit_risk_dataset.csv",
+  "target": "loan_status",
+  "split": {
+    "method": "stratified train_test_split",
+    "test_size": 0.2,
+    "random_state": 42,
+    "train_rows": 25927,
+    "test_rows": 6482,
+    "train_indices_file": "train_indices.npy",
+    "test_indices_file": "test_indices.npy",
+    "y_train_file": "y_train.npy",
+    "y_test_file": "y_test.npy"
+  },
+  "feature_configurations": {
+    "baseline": {
+      "X_train_file": "X_train_baseline.npy",
+      "X_test_file": "X_test_baseline.npy",
+      "feature_names_file": "feature_names_baseline.json",
+      "config_file": "config_baseline.json",
+      "train_shape": [
+        25927,
+        17
+      ],
+      "test_shape": [
+        6482,
+        17
+      ],
+      "number_of_features": 17,
+      "feature_names": [
+        "num__person_age",
+        "num__person_income",
+        "num__person_emp_length",
+        "num__loan_amnt",
+        "num__loan_int_rate",
+        "num__loan_percent_income",
+        "num__cb_person_cred_hist_length",
+        "ord__loan_grade",
+        "nom__person_home_ownership_OTHER",
+        "nom__person_home_ownership_OWN",
+        "nom__person_home_ownership_RENT",
+        "nom__loan_intent_EDUCATION",
+        "nom__loan_intent_HOMEIMPROVEMENT",
+        "nom__loan_intent_MEDICAL",
+        "nom__loan_intent_PERSONAL",
+        "nom__loan_intent_VENTURE",
+        "nom__cb_person_default_on_file_Y"
+      ],
+      "preprocessing_config": {
+        "impute_strategy": "median",
+        "scaler_type": "standard"
+      },
+      "dtype": "float64",
+      "finite_values": true
+    },
+    "minmax_0_1": {
+      "X_train_file": "X_train_minmax_0_1.npy",
+      "X_test_file": "X_test_minmax_0_1.npy",
+      "feature_names_file": "feature_names_minmax_0_1.json",
+      "config_file": "config_minmax_0_1.json",
+      "train_shape": [
+        25927,
+        17
+      ],
+      "test_shape": [
+        6482,
+        17
+      ],
+      "number_of_features": 17,
+      "feature_names": [
+        "num__person_age",
+        "num__person_income",
+        "num__person_emp_length",
+        "num__loan_amnt",
+        "num__loan_int_rate",
+        "num__loan_percent_income",
+        "num__cb_person_cred_hist_length",
+        "ord__loan_grade",
+        "nom__person_home_ownership_OTHER",
+        "nom__person_home_ownership_OWN",
+        "nom__person_home_ownership_RENT",
+        "nom__loan_intent_EDUCATION",
+        "nom__loan_intent_HOMEIMPROVEMENT",
+        "nom__loan_intent_MEDICAL",
+        "nom__loan_intent_PERSONAL",
+        "nom__loan_intent_VENTURE",
+        "nom__cb_person_default_on_file_Y"
+      ],
+      "preprocessing_config": {
+        "impute_strategy": "median",
+        "scaler_type": "minmax",
+        "feature_range": [
+          0,
+          1
+        ]
+      },
+      "dtype": "float64",
+      "finite_values": true
+    },
+    "minmax_m1_1": {
+      "X_train_file": "X_train_minmax_m1_1.npy",
+      "X_test_file": "X_test_minmax_m1_1.npy",
+      "feature_names_file": "feature_names_minmax_m1_1.json",
+      "config_file": "config_minmax_m1_1.json",
+      "train_shape": [
+        25927,
+        17
+      ],
+      "test_shape": [
+        6482,
+        17
+      ],
+      "number_of_features": 17,
+      "feature_names": [
+        "num__person_age",
+        "num__person_income",
+        "num__person_emp_length",
+        "num__loan_amnt",
+        "num__loan_int_rate",
+        "num__loan_percent_income",
+        "num__cb_person_cred_hist_length",
+        "ord__loan_grade",
+        "nom__person_home_ownership_OTHER",
+        "nom__person_home_ownership_OWN",
+        "nom__person_home_ownership_RENT",
+        "nom__loan_intent_EDUCATION",
+        "nom__loan_intent_HOMEIMPROVEMENT",
+        "nom__loan_intent_MEDICAL",
+        "nom__loan_intent_PERSONAL",
+        "nom__loan_intent_VENTURE",
+        "nom__cb_person_default_on_file_Y"
+      ],
+      "preprocessing_config": {
+        "impute_strategy": "median",
+        "scaler_type": "minmax",
+        "feature_range": [
+          -1,
+          1
+        ]
+      },
+      "dtype": "float64",
+      "finite_values": true
+    },
+    "robust_logincome": {
+      "X_train_file": "X_train_robust_logincome.npy",
+      "X_test_file": "X_test_robust_logincome.npy",
+      "feature_names_file": "feature_names_robust_logincome.json",
+      "config_file": "config_robust_logincome.json",
+      "train_shape": [
+        25927,
+        17
+      ],
+      "test_shape": [
+        6482,
+        17
+      ],
+      "number_of_features": 17,
+      "feature_names": [
+        "num__person_age",
+        "num__person_emp_length",
+        "num__loan_amnt",
+        "num__loan_int_rate",
+        "num__loan_percent_income",
+        "num__cb_person_cred_hist_length",
+        "numlog__person_income",
+        "ord__loan_grade",
+        "nom__person_home_ownership_OTHER",
+        "nom__person_home_ownership_OWN",
+        "nom__person_home_ownership_RENT",
+        "nom__loan_intent_EDUCATION",
+        "nom__loan_intent_HOMEIMPROVEMENT",
+        "nom__loan_intent_MEDICAL",
+        "nom__loan_intent_PERSONAL",
+        "nom__loan_intent_VENTURE",
+        "nom__cb_person_default_on_file_Y"
+      ],
+      "preprocessing_config": {
+        "impute_strategy": "median",
+        "scaler_type": "robust",
+        "log_cols": [
+          "person_income"
+        ]
+      },
+      "dtype": "float64",
+      "finite_values": true
+    },
+    "median_indicator": {
+      "X_train_file": "X_train_median_indicator.npy",
+      "X_test_file": "X_test_median_indicator.npy",
+      "feature_names_file": "feature_names_median_indicator.json",
+      "config_file": "config_median_indicator.json",
+      "train_shape": [
+        25927,
+        19
+      ],
+      "test_shape": [
+        6482,
+        19
+      ],
+      "number_of_features": 19,
+      "feature_names": [
+        "num__person_age",
+        "num__person_income",
+        "num__person_emp_length",
+        "num__loan_amnt",
+        "num__loan_int_rate",
+        "num__loan_percent_income",
+        "num__cb_person_cred_hist_length",
+        "num__missingindicator_person_emp_length",
+        "num__missingindicator_loan_int_rate",
+        "ord__loan_grade",
+        "nom__person_home_ownership_OTHER",
+        "nom__person_home_ownership_OWN",
+        "nom__person_home_ownership_RENT",
+        "nom__loan_intent_EDUCATION",
+        "nom__loan_intent_HOMEIMPROVEMENT",
+        "nom__loan_intent_MEDICAL",
+        "nom__loan_intent_PERSONAL",
+        "nom__loan_intent_VENTURE",
+        "nom__cb_person_default_on_file_Y"
+      ],
+      "preprocessing_config": {
+        "impute_strategy": "median",
+        "scaler_type": "standard",
+        "add_missing_indicator": true
+      },
+      "dtype": "float64",
+      "finite_values": true
+    },
+    "standard_pca90": {
+      "X_train_file": "X_train_standard_pca90.npy",
+      "X_test_file": "X_test_standard_pca90.npy",
+      "feature_names_file": "feature_names_standard_pca90.json",
+      "config_file": "config_standard_pca90.json",
+      "train_shape": [
+        25927,
+        8
+      ],
+      "test_shape": [
+        6482,
+        8
+      ],
+      "number_of_features": 8,
+      "feature_names": [
+        "PC1",
+        "PC2",
+        "PC3",
+        "PC4",
+        "PC5",
+        "PC6",
+        "PC7",
+        "PC8"
+      ],
+      "preprocessing_config": {
+        "impute_strategy": "median",
+        "scaler_type": "standard",
+        "pca_variance": 0.9
+      },
+      "dtype": "float64",
+      "finite_values": true
+    },
+    "standard_pca95": {
+      "X_train_file": "X_train_standard_pca95.npy",
+      "X_test_file": "X_test_standard_pca95.npy",
+      "feature_names_file": "feature_names_standard_pca95.json",
+      "config_file": "config_standard_pca95.json",
+      "train_shape": [
+        25927,
+        11
+      ],
+      "test_shape": [
+        6482,
+        11
+      ],
+      "number_of_features": 11,
+      "feature_names": [
+        "PC1",
+        "PC2",
+        "PC3",
+        "PC4",
+        "PC5",
+        "PC6",
+        "PC7",
+        "PC8",
+        "PC9",
+        "PC10",
+        "PC11"
+      ],
+      "preprocessing_config": {
+        "impute_strategy": "median",
+        "scaler_type": "standard",
+        "pca_variance": 0.95
+      },
+      "dtype": "float64",
+      "finite_values": true
+    },
+    "minmax_pca95": {
+      "X_train_file": "X_train_minmax_pca95.npy",
+      "X_test_file": "X_test_minmax_pca95.npy",
+      "feature_names_file": "feature_names_minmax_pca95.json",
+      "config_file": "config_minmax_pca95.json",
+      "train_shape": [
+        25927,
+        8
+      ],
+      "test_shape": [
+        6482,
+        8
+      ],
+      "number_of_features": 8,
+      "feature_names": [
+        "PC1",
+        "PC2",
+        "PC3",
+        "PC4",
+        "PC5",
+        "PC6",
+        "PC7",
+        "PC8"
+      ],
+      "preprocessing_config": {
+        "impute_strategy": "median",
+        "scaler_type": "minmax",
+        "feature_range": [
+          0,
+          1
+        ],
+        "pca_variance": 0.95
+      },
+      "dtype": "float64",
+      "finite_values": true
+    }
+  },
+  "notes": [
+    "Each preprocessing pipeline is fitted only on X_train and then applied to X_test.",
+    "Feature arrays are exported artifacts for inspection and reuse.",
+    "Model evaluation independently fits preprocessing inside each CV fold to prevent data leakage."
+  ],
+  "target_distribution": {
+    "train": {
+      "0": 20257,
+      "1": 5670
+    },
+    "test": {
+      "0": 5064,
+      "1": 1418
+    }
+  }
+}
